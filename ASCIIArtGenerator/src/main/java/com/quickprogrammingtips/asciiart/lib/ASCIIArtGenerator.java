@@ -37,19 +37,6 @@ public class ASCIIArtGenerator {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        ASCIIArtGenerator artGen = new ASCIIArtGenerator();
-        
-        System.out.println();
-        artGen.printTextArt("Hello", ASCIIArtGenerator.ART_SIZE_MEDIUM);
-        System.out.println();
-        
-        System.out.println();
-        artGen.printTextArt("Love is life!", ASCIIArtGenerator.ART_SIZE_SMALL,ASCIIArtFont.ART_FONT_MONO,"@");
-        System.out.println();
-        
-    }
-
     /**
      * Prints ASCII art for the specified text. For size, you can use predefined sizes or a custom size.
      * Usage - printTextArt("Hi",30,ASCIIArtFont.ART_FONT_SERIF,"@");
@@ -59,7 +46,7 @@ public class ASCIIArtGenerator {
      * @param artSymbol - Specify the character for printing the ascii art
      * @throws Exception
      */
-    public void printTextArt(String artText, int textHeight, ASCIIArtFont fontType, String artSymbol) throws Exception {
+    public static void printTextArt(String artText, int textHeight, ASCIIArtFont fontType, String artSymbol) {
         String fontName = fontType.getValue();
         int imageWidth = findImageWidth(textHeight, artText, fontName);
 
@@ -88,7 +75,7 @@ public class ASCIIArtGenerator {
      * @param textHeight
      * @throws Exception
      */
-    public void printTextArt(String artText, int textHeight) throws Exception {
+    public static void printTextArt(String artText, int textHeight) {
         printTextArt(artText, textHeight, ASCIIArtFont.ART_FONT_DIALOG, DEFAULT_ART_SYMBOL);
     }
 
@@ -99,7 +86,7 @@ public class ASCIIArtGenerator {
      * @param fontName
      * @return
      */
-    private int findImageWidth(int textHeight, String artText, String fontName) {
+    private static int findImageWidth(int textHeight, String artText, String fontName) {
         BufferedImage im = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
         Graphics g = im.getGraphics();
         g.setFont(new Font(fontName, Font.BOLD, textHeight));
@@ -112,7 +99,7 @@ public class ASCIIArtGenerator {
      * @param font
      * @return
      */
-    private int getBaselinePosition(Graphics g, Font font) {
+    private static int getBaselinePosition(Graphics g, Font font) {
         FontMetrics metrics = g.getFontMetrics(font);
         int y = metrics.getAscent() - metrics.getDescent();
         return y;
