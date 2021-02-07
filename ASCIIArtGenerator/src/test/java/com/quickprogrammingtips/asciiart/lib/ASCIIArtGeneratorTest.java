@@ -13,9 +13,15 @@ public class ASCIIArtGeneratorTest {
     }
 
     @Test
-    void testPrintTextArt_CustomFont_HelloWord() {
-        String output = ASCIIArtGenerator.printTextArt("Hello world!", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO,"@");
+    void testPrintTextArt_CustomFont_GradleRocks() {
+        String output = ASCIIArtGenerator.printTextArt("Gradle rocks!", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO,"@");
         assertOutput(output, 256);
+    }
+
+    @Test
+    void testPrintTextArt_GradleEnterpriseRocks() {
+        String output = ASCIIArtGenerator.printTextArt("Gradle Enterprise rocks even more!", ASCIIArtGenerator.ART_SIZE_MEDIUM);
+        assertOutput(output, 512);
     }
 
     private void assertOutput(String output, int oneNonSpaceCharIndex) {
@@ -23,6 +29,9 @@ public class ASCIIArtGeneratorTest {
 
         assertNotNull(output, "Output should not be null!");
         assertFalse(output.trim().isEmpty(), "Output should not be empty!");
-        assertNotEquals(' ', output.charAt(oneNonSpaceCharIndex), () -> String.format("The character at position %d should not be empty!", oneNonSpaceCharIndex));
+        assertNotEquals(' ', output.charAt(oneNonSpaceCharIndex),
+                () -> String.format(
+                        "Even if this test has failed, Gradle Enterprise still rocks! See the console or \"Custom values\" for more details :) \n" +
+                        "(Original problem: The character at position %d should not be empty!)", oneNonSpaceCharIndex));
     }
 }

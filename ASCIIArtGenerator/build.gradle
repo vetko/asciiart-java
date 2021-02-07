@@ -36,7 +36,10 @@ build {
 
 test {
     useJUnitPlatform()
-    testLogging.showStandardStreams = true
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
 }
 
 
@@ -44,7 +47,7 @@ test {
 
 private void addCustomBuildScanValues(disclaimer) {
     if (this.hasProperty("buildScan")) {
-        buildScan.tag 'dirty'
+        buildScan.tag 'LOCAL'
         buildScan.link 'Original source', 'https://github.com/quickprogrammingtips/asciiart-java'
         buildScan.value 'Disclaimer', disclaimer
         addGitLogAsCustomBuildScanValue()
