@@ -19,6 +19,17 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
+build {
+    println """
+        Disclaimer (by Attila):
+        -----------------------
+            The ASCIIArtGenerator project was originally implemented by `https://github.com/quickprogrammingtips`.
+            Original source can be found at: `https://github.com/quickprogrammingtips/asciiart-java` under a Creative Commons License (https://creativecommons.org/licenses/by/4.0/).
+            
+            Code refactored and adapted for the Gradle build-scan exercise by Attila (locally, not committed back to GitHub). 
+            """
+}
+
 test {
     useJUnitPlatform()
     testLogging.showStandardStreams = true
