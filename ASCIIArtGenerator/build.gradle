@@ -22,8 +22,8 @@ dependencies {
 def disclaimer = """
         Disclaimer (by Attila):
         -----------------------
-            The ASCIIArtGenerator project was originally implemented by `https://github.com/quickprogrammingtips`.
-            Original source can be found at: `https://github.com/quickprogrammingtips/asciiart-java` under a Creative Commons License (https://creativecommons.org/licenses/by/4.0/).
+            The ASCIIArtGenerator project was originally implemented by https://github.com/quickprogrammingtips.
+            Original source can be found at: https://github.com/quickprogrammingtips/asciiart-java under a Creative Commons License (https://creativecommons.org/licenses/by/4.0/).
             
             Code refactored and adapted for the Gradle build-scan exercise by Attila (locally, not committed back to GitHub).
             See the "Custom values" in the Build Scan for more details. 
