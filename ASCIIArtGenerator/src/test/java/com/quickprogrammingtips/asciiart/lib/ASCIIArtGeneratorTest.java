@@ -8,11 +8,21 @@ public class ASCIIArtGeneratorTest {
 
     @Test
     void testPrintTextArt_HelloWord() {
-        ASCIIArtGenerator.printTextArt("Hello World!", ASCIIArtGenerator.ART_SIZE_MEDIUM);
+        String output = ASCIIArtGenerator.printTextArt("Hello world!", ASCIIArtGenerator.ART_SIZE_MEDIUM);
+        assertOutput(output, 32);
     }
 
     @Test
     void testPrintTextArt_CustomFont_HelloWord() {
-        ASCIIArtGenerator.printTextArt("Love is life!", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO,"@");
+        String output = ASCIIArtGenerator.printTextArt("Hello world!", ASCIIArtGenerator.ART_SIZE_SMALL, ASCIIArtGenerator.ASCIIArtFont.ART_FONT_MONO,"@");
+        assertOutput(output, 256);
+    }
+
+    private void assertOutput(String output, int oneNonSpaceCharIndex) {
+        System.out.println(output); //for fancy build scan only
+
+        assertNotNull(output, "Output should not be null!");
+        assertFalse(output.trim().isEmpty(), "Output should not be empty!");
+        assertNotEquals(' ', output.charAt(oneNonSpaceCharIndex), () -> String.format("The character at position %d should not be empty!", oneNonSpaceCharIndex));
     }
 }

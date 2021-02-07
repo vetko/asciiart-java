@@ -46,7 +46,9 @@ public class ASCIIArtGenerator {
      * @param artSymbol - Specify the character for printing the ascii art
      * @throws Exception
      */
-    public static void printTextArt(String artText, int textHeight, ASCIIArtFont fontType, String artSymbol) {
+    public static String printTextArt(String artText, int textHeight, ASCIIArtFont fontType, String artSymbol) {
+        StringBuilder outputBuilder = new StringBuilder();
+
         String fontName = fontType.getValue();
         int imageWidth = findImageWidth(textHeight, artText, fontName);
 
@@ -59,13 +61,16 @@ public class ASCIIArtGenerator {
         graphics.drawString(artText, 0, getBaselinePosition(g, font));
 
         for (int y = 0; y < textHeight; y++) {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder lineBuilder = new StringBuilder();
             for (int x = 0; x < imageWidth; x++)
-                sb.append(image.getRGB(x, y) == Color.WHITE.getRGB() ? artSymbol : " ");
-            if (sb.toString().trim().isEmpty())
+                lineBuilder.append(image.getRGB(x, y) == Color.WHITE.getRGB() ? artSymbol : " ");
+            if (lineBuilder.toString().trim().isEmpty())
                 continue;
-            System.out.println(sb);
+
+            outputBuilder.append(lineBuilder).append("\n");
         }
+
+        return outputBuilder.toString();
     }
 
     /**
@@ -75,8 +80,8 @@ public class ASCIIArtGenerator {
      * @param textHeight
      * @throws Exception
      */
-    public static void printTextArt(String artText, int textHeight) {
-        printTextArt(artText, textHeight, ASCIIArtFont.ART_FONT_DIALOG, DEFAULT_ART_SYMBOL);
+    public static String printTextArt(String artText, int textHeight) {
+        return printTextArt(artText, textHeight, ASCIIArtFont.ART_FONT_DIALOG, DEFAULT_ART_SYMBOL);
     }
 
     /**
