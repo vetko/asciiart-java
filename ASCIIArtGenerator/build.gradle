@@ -47,8 +47,10 @@ test {
 
 private void addCustomBuildScanValues(disclaimer) {
     if (this.hasProperty("buildScan")) {
+        buildScan.tag 'back-end-engineer'
         buildScan.tag 'LOCAL'
-        buildScan.link 'Original source', 'https://github.com/quickprogrammingtips/asciiart-java'
+        buildScan.link 'Source', 'https://github.com/vetko/asciiart-java'
+        buildScan.link 'Original (forked) source', 'https://github.com/quickprogrammingtips/asciiart-java'
         buildScan.value 'Disclaimer', disclaimer
         addGitLogAsCustomBuildScanValue()
     }
