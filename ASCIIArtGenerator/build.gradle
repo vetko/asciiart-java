@@ -19,18 +19,41 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
-build {
-    println """
+def disclaimer = """
         Disclaimer (by Attila):
         -----------------------
             The ASCIIArtGenerator project was originally implemented by `https://github.com/quickprogrammingtips`.
             Original source can be found at: `https://github.com/quickprogrammingtips/asciiart-java` under a Creative Commons License (https://creativecommons.org/licenses/by/4.0/).
             
-            Code refactored and adapted for the Gradle build-scan exercise by Attila (locally, not committed back to GitHub). 
+            Code refactored and adapted for the Gradle build-scan exercise by Attila (locally, not committed back to GitHub).
+            See the "Custom values" in the Build Scan for more details. 
             """
+
+build {
+    println disclaimer
+    addCustomBuildScanValues(disclaimer)
 }
 
 test {
     useJUnitPlatform()
     testLogging.showStandardStreams = true
+}
+
+
+// -------- util functions --------
+
+private void addCustomBuildScanValues(disclaimer) {
+    if (this.hasProperty("buildScan")) {
+        buildScan.tag 'dirty'
+        buildScan.link 'Original source', 'https://github.com/quickprogrammingtips/asciiart-java'
+        buildScan.value 'Disclaimer', disclaimer
+        addGitLogAsCustomBuildScanValue()
+    }
+}
+
+private void addGitLogAsCustomBuildScanValue() {
+    def gitStatus = 'git log --format=oneline origin/master..HEAD'.execute().text
+    if (gitStatus) {
+        buildScan.value 'Git Log (commits added by Attila)', gitStatus
+    }
 }
